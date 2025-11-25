@@ -1,5 +1,13 @@
 #define ANTENNA 2 
+/*
+The first version of the code defined the card ID using a standard numeric format:
 #define CARD_ID 0x0001020304
+This approach, however, results in an incorrect emulated ID. After uploading, a reader would return 0x0016909060 instead of the intended value.
+The solution is to use the hex-string format described in the related blog post. To correctly emulate the ID 0x0001020304, define it as:
+#define CARD_ID 0xABCDF
+With this change, a reader will successfully return the expected ID: 0001020304.
+To get the actual value, convert that value to hex-string and define the ID with that*/
+#define CARD_ID 0xABCDF 
 
 volatile int bit_counter=0;
 volatile int byte_counter=0;
